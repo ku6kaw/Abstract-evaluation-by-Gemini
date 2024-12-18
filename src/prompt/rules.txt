@@ -1,0 +1,32 @@
+Rules:
+1. Research background is written
+2. Research background is shown in one sentence
+3. Research background is shown in two sentences
+4. Overview of previous research and its relevance is written
+5. Research objective is written
+6. Research objective is in the first sentence of the abstract
+7. Research objective is within the first three sentences of the abstract
+8. Research objective is written in present tense
+9. Research objective is written in past tense
+10. The necessity of achieving the research objective is written
+11. Proposed research method is written
+12. Proposed research method is written in past tense
+13. Explanation of dataset content exists
+14. Experimental equipment is explained
+15. Data collection method is written
+16. Experimental evaluation metrics are written
+17. Experimental results are written
+18. Findings from the results are written
+19. Experimental results and findings are in present tense
+20. Experimental results and findings are in past tense
+21. Result analysis method is written
+22. Statistical trends are written
+23. Quantitative results are written
+24. Qualitative results are written
+25. Conclusion is written
+26. Conclusion is in present tense
+27. Main results are explained while comparing with traditional thinking
+28. Research prospects are written in the last 1-2 sentences
+29. Abbreviations are included (except when first explained)
+30. Written in active voice
+31. Use of I or We as the subject

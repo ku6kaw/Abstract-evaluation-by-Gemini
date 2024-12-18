@@ -1,0 +1,125 @@
+You will judge whether a given abstract meets the specified evaluation metrics based on the given criteria. The following is the prerequisite knowledge used when evaluating abstracts.
+
+[## Prerequisites
+
+**Proposed Method**: A newly conceived approach or method to solve a specific problem. This includes improvements to existing methods. It encompasses the steps and operations of the method.
+
+- **Example 1 (New Algorithm):** Developed a new algorithm to solve traffic congestion by adjusting traffic volume and signal timing in real-time. This algorithm inputs past traffic data and current traffic conditions into a machine learning model to output optimal signal control patterns. The proposed method includes the algorithm design, creation of learning data, parameter tuning method, and the procedure for applying it to actual traffic signals.
+- **Example 2 (Improvement of Existing Method):** Added a new preprocessing step to the existing image recognition model to improve accuracy. This preprocessing involves noise removal and contrast adjustment. The proposed method includes the specific steps of this preprocessing and how it can be integrated into image recognition models.
+
+**Dataset**: A collection of data used for experiments or analysis.
+
+- **Example 1 (Image Data):** A dataset consisting of 10,000 cat images and 10,000 dog images. Each image is labeled with breed, fur color, and posture.
+- **Example 2 (Text Data):** A dataset of 1 million tweets. Each tweet includes posting date and time, user ID, content, and hashtags.
+
+**Experimental Equipment**: Physical devices or facilities used in an experiment. Software is not included.
+
+- **Example 1:** EEG measurement device, electrodes, amplifier
+- **Example 2:** Beakers, flasks, electronic balance for observing chemical reactions
+
+**Data Collection Method**: The method of obtaining data that constitutes the dataset.
+
+- **Example 1 (Survey):** Created an online survey form and recruited participants through social media to collect responses.
+- **Example 2 (Sensor Measurement):** Installed temperature and humidity sensors to automatically record data every hour.
+
+**Evaluation Metrics**: Specific measures to assess the performance or effectiveness of the proposed method or experimental results.
+
+- **Example 1 (Image Classification Accuracy):** Percentage of correctly classified images
+- **Example 2 (Algorithm Execution Speed):** Time taken to complete a specific task
+
+**Experimental Results/Findings**: Specific data obtained from the experiment and the insights derived from that data.
+
+- **Example 1:** When using proposed method A, image classification accuracy was 95%. In contrast, existing method B achieved 80%. This result shows that proposed method A achieves higher classification accuracy than existing method B.
+- **Example 2:** Mice administered drug X showed significantly larger tumor reduction compared to the control group (p < 0.05). This suggests that drug X has anti-tumor effects.
+
+**Research Prospects**: Description of future research directions or potential applications of research findings.
+
+- **Example 1:** Future research will need to verify the performance of the proposed method using larger datasets. We will also investigate potential applications in other fields.
+- **Example 2:** It is expected that improving the algorithm developed in this research could enable the construction of faster and more energy-efficient systems.
+
+**Research Background**: The context that gave rise to the research topic, explaining why the topic is important and why research is necessary. Describes social needs, academic challenges, or unresolved problems.
+
+- **Example:** "In recent years, abnormal weather events have become frequent due to global warming. Particularly, damage from concentrated heavy rainfall has become serious, making the strengthening of disaster prevention measures urgent. However, existing disaster prevention systems have low prediction accuracy and difficulty in prompt response."
+
+**Overview of Previous Research and Its Relevance**: Introduces existing research and clarifies its relationship with the current research. Explains the achievements and limitations of previous research, and the novelty and contribution of the current research.
+
+- **Example:** "Conventional concentrated heavy rainfall prediction systems primarily relied on weather radar data. However, these radar data have low spatial resolution and cannot accurately capture localized heavy rainfall. This research proposes a method to improve prediction accuracy by integrating radar data with ground-based rainfall gauge data and information from social media."
+
+**Research Objective**: Clearly describes what the research aims to achieve. Specifies concrete goals or challenges to be solved.
+
+- **Example:** "The objective of this research is to improve the accuracy of concentrated heavy rainfall prediction by comprehensively utilizing diverse data sources."
+
+**Result Analysis Method**: Explains the methods used to analyze experimental results. Describes specific method names and procedures such as statistical methods, machine learning techniques, or simulations.
+
+- **Example:** "To evaluate prediction accuracy, RMSE (Root Mean Squared Error) was used. To compare the performance of the proposed and conventional methods, a t-test was used to verify statistical significance."
+
+**Statistical Trends**: Describes the statistical characteristics of the data. Explains data distribution and trends using statistical measures such as mean, median, standard deviation, correlation coefficient.
+
+- **Example:** "When using the proposed method, RMSE decreased by 20% compared to the conventional method. Additionally, the correlation coefficient between prediction results and actual measurements was 0.85, indicating a high correlation."
+
+**Conclusion**: Summarizes the entire research and briefly describes the findings. Describes the degree of achieving research objectives, main results, and future prospects. "Code has been made publicly available." is not a conclusion.
+
+- **Example:** "This research proposed a heavy rainfall prediction system that comprehensively utilizes diverse data sources and verified its effectiveness. Experimental results confirmed that the proposed method improves prediction accuracy compared to conventional methods. Future research will investigate applicability to areas with complex topography."
+
+**Comparing Main Results with Traditional Thinking**: Comparing the achievements of the proposed method with existing research and methods, clearly demonstrating its advantages and novelty. Qualitative comparisons are also effective.
+
+- **Example:** "Conventional heavy rainfall prediction systems, relying solely on weather radar data, found it difficult to predict localized heavy rainfall. In contrast, the proposed system, by utilizing rainfall gauge data and social media information in addition to radar data, improved localized heavy rainfall prediction accuracy by 20%. Moreover, while existing systems required hours for prediction, the proposed system enables real-time prediction."]
+
+---
+# Instruction
+
+1. **Section Decomposition**:
+    Systematically divide the abstract into the following predefined sections:
+    - Research Background
+    - Prior Research
+    - Research Purpose
+    - Proposed Method
+    - Dataset
+    - Experimental Apparatus
+    - Data Collection Method
+    - Experimental Evaluation Metrics
+    - Experimental Results
+    - Fingings from the results
+    - Result Analysis Method
+    - Statistical Trends of Results
+    - Quantitative Results
+    - Qualitative Results
+    - Discussion
+    - Conclusion
+    - Research Prospects
+
+2. **Evaluation Format**:
+    Provide a JSON response that evaluates whether the abstract meets specific criteria for each section.
+
+3. **Evaluation Rules**:
+    - If a section does not exist in the abstract, represent it as a blank list.
+    - For evaluation metrics sections:
+     * Answer with "no" for whether something is written or not
+
+---
+Use this JSON schema:
+
+**JSON schema**:
+{
+    "results": [
+        {
+            "separated_abstract": ["string", ...],
+            "rules": ["yes" or "no", ...]
+        }
+    ]
+}
+
+**Example Response**:
+{
+    "results": [
+        {
+            "separated_abstract": [
+                "This research investigates the impact of climate change on agriculture.",
+                "We propose a novel machine learning model to predict crop yields.",
+                "Our results show a significant decrease in yields in the next decade.",
+                "The findings suggest the urgent need for adaptation strategies."
+            ],
+            "rules": ["yes", "no", "yes", "yes", "no", "yes", "yes", "no"]
+        }
+    ]
+}
