@@ -31,4 +31,5 @@ Rules:
 30. Written in active voice
 31. Use of I or We as the subject
 
+---
 Now, please review the Prerequisites, Section Decomposition, Evaluation Format, Evaluation Rules, Abstract, and Rules and evaluate the given abstract.

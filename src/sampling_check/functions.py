@@ -2,6 +2,7 @@ import os
 import time
 import pandas as pd
 from tqdm import tqdm
+import json
 
 
 def create_user_message(abstract, rules):
