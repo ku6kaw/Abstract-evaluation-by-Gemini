@@ -109,8 +109,8 @@ def visualize_results(results_df, graph_dir, data_dir, field):
     results_df['Rule'] = results_df['Rule'].str.replace('rule', '').astype(int)
     plt.figure(figsize=(12, 6))
     plt.bar(results_df['Rule'], results_df['Z-statistic'], color='skyblue', edgecolor='black')
-    plt.axhline(y=1.96, color='red', linestyle='--', label='0.05 有意水準 (+1.96)')
-    plt.axhline(y=-1.96, color='red', linestyle='--', label='0.05 有意水準 (-1.96)')
+    plt.axhline(y=3.29, color='red', linestyle='--', label='0.001 有意水準 (+3.29)')
+    plt.axhline(y=-3.29, color='red', linestyle='--', label='0.001 有意水準 (-3.29)')
     plt.title(f'{field}のZ値分布', fontsize=16)
     plt.xlabel('指標', fontsize=14)
     plt.ylabel('Z値', fontsize=14)
@@ -122,3 +122,53 @@ def visualize_results(results_df, graph_dir, data_dir, field):
     plt.savefig(output_file)
     print(f'グラフを保存しました: {output_file}')
     plt.show()
+
+def calculate_yes_ratios(df, rules):
+    """
+    指標ごとのyesの比率を計算します。
+    Args:
+        df (DataFrame): データフレーム。
+        rules (list): 指標のリスト。
+    Returns:
+        DataFrame: 指標ごとのyes比率を含むデータフレーム。
+    """
+    ratios = {}
+    for rule in rules:
+        yes_ratio = (df[rule] == 'yes').mean()
+        ratios[rule] = yes_ratio
+    return pd.DataFrame(list(ratios.items()), columns=['Rule', 'Yes Ratio'])
+
+def save_yes_ratio_graph(high_ratios, low_ratios, output_dir, title):
+    """
+    Yes比率のグラフを保存する関数
+    Args:
+        high_ratios (DataFrame): Highグループの指標ごとのYes比率。
+        low_ratios (DataFrame): Lowグループの指標ごとのYes比率。
+        output_dir (str): グラフの保存先ディレクトリ。
+        title (str): グラフのタイトル（保存時のファイル名にも使用）。
+    """
+    os.makedirs(output_dir, exist_ok=True)
+    
+    # Rule列が文字列型の場合のみ変換を実施
+    if high_ratios['Rule'].dtype == 'object':
+        high_ratios['Rule'] = high_ratios['Rule'].str.replace('rule', '').astype(int)
+    if low_ratios['Rule'].dtype == 'object':
+        low_ratios['Rule'] = low_ratios['Rule'].str.replace('rule', '').astype(int)
+    
+    # グラフの作成
+    plt.figure(figsize=(12, 6))
+    x = high_ratios['Rule']  # 数値型に変換済みのRule列
+    plt.bar(x - 0.2, high_ratios['Yes Ratio'], width=0.4, label='Highグループ', color='skyblue', align='center')
+    plt.bar(x + 0.2, low_ratios['Yes Ratio'], width=0.4, label='Lowグループ', color='salmon', align='center')
+    plt.xlabel('指標', fontsize=14)
+    plt.ylabel('Yesの比率', fontsize=14)
+    plt.title(title, fontsize=16)
+    plt.legend(fontsize=12)
+    plt.xticks(rotation=90)
+    plt.tight_layout()
+    
+    # グラフの保存
+    graph_path = os.path.join(output_dir, f"{title}_yes_ratio.png")
+    plt.savefig(graph_path)
+    print(f"Yes比率のグラフを保存しました: {graph_path}")
+    plt.close()
