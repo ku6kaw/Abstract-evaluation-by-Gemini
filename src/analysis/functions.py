@@ -92,7 +92,7 @@ def save_results(data, output_dir, filename):
     data.to_csv(file_path, index=False, encoding='utf-8-sig')
     print(f'データを保存しました: {file_path}')
 
-def visualize_results(results_df, graph_dir, data_dir, field):
+def visualize_results(results_df, graph_dir, data_dir, field, y_axis_limit):
     """
     グラフと数値データを保存します。
     Args:
@@ -106,15 +106,20 @@ def visualize_results(results_df, graph_dir, data_dir, field):
 
     # グラフを保存
     os.makedirs(graph_dir, exist_ok=True)
-    results_df['Rule'] = results_df['Rule'].str.replace('rule', '').astype(int)
+    x_positions = range(len(results_df))
     plt.figure(figsize=(12, 6))
-    plt.bar(results_df['Rule'], results_df['Z-statistic'], color='skyblue', edgecolor='black')
+    plt.bar(x_positions, results_df['Z-statistic'], color='skyblue', edgecolor='black')
+    plt.axhline(y=0, color='black', linestyle='-', linewidth=1)
     plt.axhline(y=3.29, color='red', linestyle='--', label='0.001 有意水準 (+3.29)')
     plt.axhline(y=-3.29, color='red', linestyle='--', label='0.001 有意水準 (-3.29)')
+    
+    # 縦軸の範囲を固定
+    plt.ylim(-y_axis_limit, y_axis_limit)
+    
     plt.title(f'{field}のZ値分布', fontsize=16)
-    plt.xlabel('指標', fontsize=14)
+    plt.xlabel('評価指標', fontsize=14)
     plt.ylabel('Z値', fontsize=14)
-    plt.xticks(ticks=results_df['Rule'], labels=results_df['Rule'], fontsize=12)
+    plt.xticks(ticks=x_positions, labels=results_df['Rule'], fontsize=16)
     plt.legend(fontsize=12)
     plt.tight_layout()
 
